@@ -1,46 +1,20 @@
-<h2>Challenge 1 - Display list of all names</h2>
-{{! Edit below this line}}
-<ul class="people_list">
-  {{#each users}}
-    <li>{{this.name}}</li>
-  {{/each}}
-</ul>
+<div class="messages">
 
-<h2>Challenge 2 - Display list of all names in UPPERCASE</h2>
-{{! Edit below this line}}
-<ul class="people_list">
-  {{#each users}}
-    <li>{{uppercase this.name}}</li>
-  {{/each}}
-</ul>
+  <div class="singleMessage">
+    <div class="messageHeader">
+      <h2>username</h2>
+      <p>date</p>
+    </div>
+    <div class="messageContent">
+      <p>dfslkjf;dsjfk;dsjfkldsjklf</p>
+    </div>
+  </div>
 
-<h2>Challenge 3 - Display a list of users who are admins</h2>
-{{! Edit below this line}}
-<ul class="people_list">
-  {{#each users}}
-    {{#if this.admin}}
-    <li>{{this.name}}</li>
-    {{/if}}
-  {{/each}}
-</ul>
-
-
-<h2>Challenge 4 - Display a list of users along with their age</h2>
-{{! Edit below this line}}
-<ul class="people_list">
-  {{#each users}}
-    <li>{{this.name}} age is: {{subtract 2017 this.yearOfBirth}}</li>
-  {{/each}}
-</ul>
-
-<h2>Challenge 5 - Display a list of users who are logged in or a label 'Log In' if the user is not logged in.</h2>
-{{! Edit below this line}}
-<ul class="people_list">
-  {{#each users}}
-    {{#if this.loggedIn}}
-      <li>{{this.name}}</li>
-    {{else}}
-      <li>Log In</li>
-    {{/if}}
-  {{/each}}
-</ul>
+</div>
+<div class="newMessage">
+  <form id="newMessage" action="index.html" method="post">
+    <input type="text" name="username" value="" placeholder="User name....">
+    <input type="text" name="context" value="" placeholder="write anything....">
+    <input type="submit" name="submit" value="Send">
+  </form>
+</div>
