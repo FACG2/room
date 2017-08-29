@@ -1,15 +1,15 @@
 <div class="messages">
-
+{{#each allMessages}}
   <div class="singleMessage">
     <div class="messageHeader">
-      <h2>username</h2>
-      <p>date</p>
+      <h2>{{username}}</h2>
+      <p>{{date}}</p>
     </div>
     <div class="messageContent">
-      <p>dfslkjf;dsjfk;dsjfkldsjklf</p>
+      <p>{{context}}</p>
     </div>
   </div>
-
+{{/each}}
 </div>
 <div class="newMessage">
   <form id="newMessage" action="/new" method="post">

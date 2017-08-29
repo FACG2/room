@@ -1,5 +1,5 @@
 const pgp = require('pg-promise');
-const connection = require('./database/db_connection.js');
+const connection = require('../database/db_connection.js');
 const db = pgp(connection);
 require('env2')('./config.env');
 
@@ -17,11 +17,22 @@ const storeMessage = (username, message, res) => {
   })
   .catch(errHandler);
 };
+
+const allMessages = (res) => {
+  connection.query(`SELECT username, context,date FROM messages`)
+  .then((dbRes) => {
+    console.log('home.hbs', dbRes.rows);
+    res.render('home.hbs', {allMessages:dbRes.rows});
+  })
+  .catch(errHandler);
+};
+
 const errHandler = err => {
   res.statusCode = 500;
   res.end('Server Error');
 };
 
 module.exports = {
-  storeMessage
+  storeMessage,
+  allMessages
 };
