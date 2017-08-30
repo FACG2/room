@@ -9,26 +9,36 @@ require('env2')('./config.env');
 //   .then(date => { res.redirect('..'); })
 //   .catch(err => { errHandler(err); });
 // };
-const storeMessage = (username, message, res) => {
-  console.log('user name', username);
-  connection.query(`insert into messages (username , context) values($1 , $2)`, [username, message])
-  .then((dbRes) => {
-    res.redirect('/');
-  })
-  .catch(errHandler);
-};
+// const storeMessage = (username, message, callback) => {
+//   connection.query(`insert into messages (username , context) values($1 , $2) RETURNING username AND context`, [username, message])
+//   .then((dbRes) => {
+//     console.log(dbRes);
+//     callback(dbRes);
+//   })
+//   .catch(errHandler);
+// };
 
+const storeMessage = (username, message, callback) => {
+  // This makes a database query, that returns an id, however, it returns an array of one, so then it is converted to just the id (as an object)
+  return connection.query(
+  `insert into messages (username , context) values($1 , $2) RETURNING username ,context`,
+   [username, message]
+  )
+  .then(dbRes => callback(null, dbRes.rows))
+  .catch((err) => {
+    callback(err);
+  });
+};
+// var obj = {username: 'qamar', context: 'haahah'};
+// storeMessage(obj.username, obj.context);
 const allMessages = (callback) => {
   connection.query(`SELECT username, context,date FROM messages`)
   .then((dbRes) => {
-    callback(dbRes.rows);
+    callback(null, dbRes.rows);
   })
-  .catch(errHandler);
-};
-
-const errHandler = err => {
-  res.statusCode = 500;
-  res.end('Server Error');
+  .catch((err) => {
+    callback(err);
+  });
 };
 
 module.exports = {
