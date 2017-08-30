@@ -3,13 +3,27 @@ const queries = require('../queries/functional_db.js');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  queries.allMessages((dbRes) => {
-    res.render('home.hbs', {allMessages: dbRes});
+  queries.allMessages((err, dbRes) => {
+    if (err) {
+      res.status(500);
+      res.write('Server Error');
+    } else {
+      res.status(200);
+      res.render('home.hbs', {allMessages: dbRes});
+    }
   });
 });
 router.post('/new', (req, res) => {
-  console.log('body', req.body);
-  queries.storeMessage(req.body.username, req.body.context, res);
+  res.status(302);
+  queries.storeMessage(req.body.username, req.body.context, (err, rows) => {
+    if (err) {
+      res.status(500);
+      res.write('Server Error');
+    } else {
+      console.log('aa', rows);
+      res.redirect('/');
+    }
+  });
 });
 
 module.exports = router;
