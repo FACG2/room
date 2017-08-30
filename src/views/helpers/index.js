@@ -1,3 +1,3 @@
-// module.exports = {
-//   uppercase: require('./uppercase'),
-// };
+module.exports = {
+  getDate: require('./getDate'),
+};
