@@ -1,20 +1,10 @@
-<div class="messages">
-{{#each allMessages}}
-  <div class="singleMessage">
-    <div class="messageHeader">
-      <h2>{{username}}</h2>
-      <p>{{getDate date}}</p>
-    </div>
-    <div class="messageContent">
-      <p>{{context}}</p>
-    </div>
-  </div>
-{{/each}}
-</div>
 <div class="newMessage">
   <form id="newMessage" action="/new" method="post">
     <input type="text" name="username" value="" placeholder="User name....">
     <input type="text" name="context" value="" placeholder="write anything....">
     <input type="submit" name="submit" value="Send">
   </form>
+</div>
+<div class="messages">
+{{>allMessages}}
 </div>
