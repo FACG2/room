@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 router.get('/update', (req, res) => {
   queries.allMessages((err, dbRes) => {
     // res.setHeader('Last-Modified', (new Date()).toUTCString());
-    res.render('allMessages.hbs', {allMessages: dbRes, layout: false});
+    res.render('partials/allMessages.hbs', {allMessages: dbRes, layout: false});
   });
 });
 
