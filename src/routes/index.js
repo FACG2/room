@@ -14,11 +14,12 @@ router.get('/', (req, res) => {
   });
 });
 router.get('/update', (req, res) => {
-  queries.allMessages((dbRes) => {
-    res.status(200);
-    res.render('partials/allMessages.hbs', {allMessages: dbRes});
+  queries.allMessages((err, dbRes) => {
+    // res.setHeader('Last-Modified', (new Date()).toUTCString());
+    res.render('allMessages.hbs', {allMessages: dbRes, layout: false});
   });
 });
+
 router.post('/new', (req, res) => {
   res.status(302);
   queries.storeMessage(req.body.username, req.body.context, (err, rows) => {
