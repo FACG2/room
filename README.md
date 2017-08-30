@@ -28,4 +28,4 @@ The project is a chat room with out login or register, a user can only submit hi
 5. Run ```$ npm run start:watch```
 6. Go to the Chrome browser and type ```localhost:4000``` in the address bar
 
-### Try the project [Here](https://git.heroku.com/messaging-ap.git)  
+### Try the project [Here](https://messaging-ap.herokuapp.com/)  
