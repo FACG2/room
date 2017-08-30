@@ -12,6 +12,7 @@ The project is a chat room with out login or register, a user can only submit hi
 2. Express framework.
 3. layouts, views, partials and handlebars.
 4. Promises.
+5. Postgres database on Heroku
 
 ### The user story:
 [Here](https://github.com/FACG2/room/blob/master/documentation/user_stories.md)
