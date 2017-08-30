@@ -18,11 +18,10 @@ const storeMessage = (username, message, res) => {
   .catch(errHandler);
 };
 
-const allMessages = (res) => {
+const allMessages = (callback) => {
   connection.query(`SELECT username, context,date FROM messages`)
   .then((dbRes) => {
-    console.log('home.hbs', dbRes.rows);
-    res.render('home.hbs', {allMessages:dbRes.rows});
+    callback(dbRes.rows);
   })
   .catch(errHandler);
 };
