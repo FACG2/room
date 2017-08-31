@@ -17,20 +17,21 @@ router.get('/update', (req, res, next) => {
     if (err) {
       next(err);
     } else {
-      res.render('partials/allMessages.hbs', {allMessages: dbRes, layout: false});
+      res.render('partials/allMessages', {allMessages: dbRes, layout: false});
     }
   });
 });
 
 router.post('/new', (req, res, next) => {
-  queries.storeMessage(req.body.username, req.body.context, (err, rows) => {
-    if (err) {
-      next(err);
-    } else {
-      res.status(302);
-      res.redirect('/');
-    }
-  });
+  if (req.body.username.trim().length > 1 || req.body.context.trim().length > 1) {
+    queries.storeMessage(req.body.username, req.body.context, (err, rows) => {
+      if (err) {
+        next(err);
+      }
+    });
+  } 
+  res.status(302);
+  res.redirect('/');
 });
 
 module.exports = router;

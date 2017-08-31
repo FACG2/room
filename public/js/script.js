@@ -1,9 +1,7 @@
 (function () {
   var messagesContainer = document.getElementsByClassName('messages')[0];
 
-  setInterval(function () {
-    getContent();
-  }, 2000);
+  setInterval(getContent, 2000);
 
   function updateContent (newHtmlcontent) {
     messagesContainer.innerHTML = newHtmlcontent;

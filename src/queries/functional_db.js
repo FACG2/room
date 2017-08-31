@@ -1,6 +1,5 @@
-const pgp = require('pg-promise');
 const connection = require('../database/db_connection.js');
-const db = pgp(connection);
+var emoji_replace = require('emoji-replace');
 require('env2')('./config.env');
 
 const storeMessage = (username, message, callback) => {
@@ -16,9 +15,13 @@ const storeMessage = (username, message, callback) => {
 };
 
 const allMessages = (callback) => {
-  connection.query(`username, context,date FROM messages order by date desc`)
+  connection.query(`SELECT username, context,date FROM messages order by date desc`)
   .then((dbRes) => {
-    callback(null, dbRes.rows);
+    var replac = dbRes.rows.map((message) => {
+      message.context = emoji_replace(message.context);
+      return message;
+    });
+    callback(null, replac);
   })
   .catch((err) => {
     callback(err);
