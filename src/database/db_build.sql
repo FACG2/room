@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS messages comments CASCADE;
+DROP TABLE IF EXISTS messages CASCADE;
 
 
 CREATE TABLE messages(
