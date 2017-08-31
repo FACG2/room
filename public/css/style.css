@@ -14,6 +14,10 @@ nav{
   background: black;
   padding: 8px;
 }
+.errorHeader{
+  text-align: center;
+  margin-top: 50px;
+}
 #newMessage{
   display: flex;
   justify-content: center;
