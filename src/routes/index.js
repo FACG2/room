@@ -31,7 +31,6 @@ router.post('/new', (req, res) => {
         res.status(500);
         res.write('Server Error');
       } else {
-        console.log('aa', rows);
         res.redirect('/');
       }
     });
