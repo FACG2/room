@@ -18,7 +18,7 @@ router.get('/update', (req, res, next) => {
     if (err) {
       next(err);
     } else {
-      res.render('partials/allMessages.hbs', {allMessages: dbRes, layout: false});
+      res.render('partials/allMessages', {allMessages: dbRes, layout: false});
     }
   });
 });
