@@ -23,13 +23,13 @@ router.get('/update', (req, res, next) => {
 });
 
 router.post('/new', (req, res, next) => {
-  if (req.body.username.trim().length > 1 || req.body.context.trim().length > 1) {
+  if (req.body.username.trim().length > 1 && req.body.context.trim().length > 1) {
     queries.storeMessage(req.body.username, req.body.context, (err, rows) => {
       if (err) {
         next(err);
       }
     });
-  } 
+  }
   res.status(302);
   res.redirect('/');
 });
