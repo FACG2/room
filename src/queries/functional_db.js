@@ -13,6 +13,7 @@ const storeMessage = (username, message, callback) => {
     callback(err);
   });
 };
+
 const allMessages = (callback) => {
   connection.query(`SELECT username, context,date FROM messages order by date desc`)
   .then((dbRes) => {
