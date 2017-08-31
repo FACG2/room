@@ -25,8 +25,19 @@ app.engine(
     helpers: helpers
   })
 );
-
-app.set('port', process.env.PORT || 4000);
 app.use(routes);
+
+app.use((err, req, res, next) => {
+  console.log('err', err);
+  res.status(err.status || 500);
+  res.render('error.hbs', {
+    message: err.message,
+    error: {}
+  });
+});
+app.use((req, res) => {
+  res.status(404).render('404.hbs');
+});
+app.set('port', process.env.PORT || 4000);
 
 module.exports = app;
